@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
+import com.example.habobooking.Model.MyToken;
 import com.example.habobooking.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -15,15 +16,24 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import io.paperdb.Paper;
 
 public class Common {
-    public static final String LOGGED_KEY = "1234" ;
+    public static final String LOGGED_KEY = "UserLogged" ;
     public static String IS_LOGIN = "IsLogin";
     public static User currentUser;
+
+    public static enum TOKEN_TYPE{
+        CLIENT,
+        BARBER,
+        MANAGER
+    }
 
     public static void updateToken(Context context, final String s) {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
                 MyToken myToken = new MyToken();
+                myToken.setToken(s);
+                myToken.setTokenType(TOKEN_TYPE.CLIENT);
+                myToken.setUserPhone(user.getPhoneNumber());
 
                 FirebaseFirestore.getInstance()
                         .collection("Tokens")
@@ -40,6 +50,9 @@ public class Common {
                 if (localUser != null) {
                     if (!TextUtils.isEmpty(localUser)) {
                         MyToken myToken = new MyToken();
+                        myToken.setToken(s);
+                        myToken.setTokenType(TOKEN_TYPE.CLIENT);
+                        myToken.setUserPhone(localUser);
 
                         FirebaseFirestore.getInstance()
                                 .collection("Tokens")
@@ -52,8 +65,5 @@ public class Common {
                 }
             }
         }
-
-    private static class MyToken {
-    }
 }
 
