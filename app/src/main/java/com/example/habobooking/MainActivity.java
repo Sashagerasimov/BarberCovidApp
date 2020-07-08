@@ -83,13 +83,6 @@ public class MainActivity extends AppCompatActivity {
             else {
                 Toast.makeText(this,"Failed to Sign In", Toast.LENGTH_SHORT).show();
             }
-            else{
-
-                Intent intent = new Intent(this,HomeActivity.class);
-                intent.putExtra(Common.IS_LOGIN, true);
-                startActivity(intent);
-                finish();
-            }
         }
     }
 
