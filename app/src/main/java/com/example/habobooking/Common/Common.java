@@ -5,7 +5,9 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
+import com.example.habobooking.Model.Barber;
 import com.example.habobooking.Model.MyToken;
+import com.example.habobooking.Model.Salon;
 import com.example.habobooking.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -17,8 +19,18 @@ import io.paperdb.Paper;
 
 public class Common {
     public static final String LOGGED_KEY = "UserLogged" ;
+    public static final String KEY_ENABLE_BUTTON_NEXT = "ENABLE_BUTTON_NEXT";
+    public static final String KEY_SALON_STORE = "SALON_SAVE";
+    public static final String KEY_BARBER_LOAD_DONE = "BARBER_LOAD_DONE";
+    public static final String KEY_DISPLAY_TIME_SLOT = "DISPLAY_TIME_SLOT";
+    public static final String KEY_STEP = "KEY_STEP";
+    public static final String KEY_BARBER_SELECTED = "KEY_BARBER_SELECTED";
     public static String IS_LOGIN = "IsLogin";
     public static User currentUser;
+    public static Salon currentSalon;
+    public static int step = 0;
+    public static String city = "";
+    public static Barber currentBarber;
 
     public static enum TOKEN_TYPE{
         CLIENT,
