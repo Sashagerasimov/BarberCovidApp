@@ -31,6 +31,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.google.firebase:firebase-auth:16.0.5'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.firebase:firebase-database:19.3.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -57,7 +58,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
     implementation 'com.ss.bannerslider:bannerslider:2.0.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'com.shuhart.stepview:stepview:1.4.0'
+    implementation 'com.shuhart.stepview:stepview:1.5.1'
     implementation 'com.jaredrummler:material-spinner:1.3.1'
     implementation 'devs.mulham.horizontalcalendar:horizontalcalendar:1.3.4'
 

@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,9 +23,11 @@ import com.example.habobooking.Adapter.HomeSliderAdapter;
 import com.example.habobooking.Adapter.LookbookAdapter;
 import com.example.habobooking.BookingActivity;
 import com.example.habobooking.Common.Common;
+import com.example.habobooking.HomeActivity;
 import com.example.habobooking.Interface.IBannerLoadListener;
 import com.example.habobooking.Interface.ILookbookLoadListener;
 import com.example.habobooking.Model.Banner;
+import com.example.habobooking.ProfileActivity;
 import com.example.habobooking.R;
 import com.example.habobooking.Service.PicassoImageLoadingService;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -53,9 +57,12 @@ import ss.com.bannerslider.Slider;
 public class HomeFragment extends Fragment implements IBannerLoadListener, ILookbookLoadListener {
 
     private Unbinder unbinder;
+    private Button profileBtn;
 
     @BindView(R.id.layout_user_information)
     LinearLayout layout_user_information;
+    @BindView(R.id.ivProfile)
+    ImageView ivProfile;
     @BindView(R.id.txt_user_name)
     TextView txt_user_name;
     @BindView(R.id.banner_slider)
@@ -87,6 +94,7 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, ILook
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         unbinder = ButterKnife.bind(this,view);
+        profileBtn = view.findViewById(R.id.profileBtn);
 
         // initiate
         Slider.init(new PicassoImageLoadingService());
@@ -101,6 +109,14 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, ILook
             loadBanner();
             loadLookBook();
         }
+
+        //Listener for the profile button
+        ivProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), ProfileActivity.class));
+            }
+        });
 
         return view;
     }
