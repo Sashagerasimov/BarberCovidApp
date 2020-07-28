@@ -59,7 +59,6 @@ public class BookingStep3Fragment extends Fragment implements ITimeSlotLoadListe
 
     Unbinder unbinder;
     LocalBroadcastManager localBroadcastManager;
-    Calendar selected_date;
 
     @BindView(R.id.recycler_time_slot)
     RecyclerView recycler_time_slot;
@@ -87,7 +86,7 @@ public class BookingStep3Fragment extends Fragment implements ITimeSlotLoadListe
                 .collection("AllSalon")
                 .document(Common.city)
                 .collection("Branch")
-                .document(Common.currentSalon.getSalonID())
+                .document(Common.currentSalon.getSalonId())
                 .collection("Barber")
                 .document(Common.currentBarber.getBarberId());
 
@@ -104,7 +103,7 @@ public class BookingStep3Fragment extends Fragment implements ITimeSlotLoadListe
                                 .collection("AllSalon")
                                 .document(Common.city)
                                 .collection("Branch")
-                                .document(Common.currentSalon.getSalonID())
+                                .document(Common.currentSalon.getSalonId())
                                 .collection("Barber")
                                 .document(Common.currentBarber.getBarberId())
                                 .collection(bookDate);
@@ -158,9 +157,6 @@ public class BookingStep3Fragment extends Fragment implements ITimeSlotLoadListe
         simpleDateFormat = new SimpleDateFormat("dd_MM_yyyy");
 
         dialog = new SpotsDialog.Builder().setContext(getContext()).setCancelable(false).build();
-
-        selected_date = Calendar.getInstance();
-        selected_date.add(Calendar.DATE,0);
     }
 
     @Override
@@ -202,9 +198,9 @@ public class BookingStep3Fragment extends Fragment implements ITimeSlotLoadListe
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Calendar date, int position) {
-                if(selected_date.getTimeInMillis() != date.getTimeInMillis())
+                if(Common.currentDate.getTimeInMillis() != date.getTimeInMillis())
                 {
-                    selected_date = date;
+                    Common.currentDate = date;
                     loadAvailableTimeSlotOfBarber(Common.currentBarber.getBarberId(),
                             simpleDateFormat.format(date.getTime()));
                 }

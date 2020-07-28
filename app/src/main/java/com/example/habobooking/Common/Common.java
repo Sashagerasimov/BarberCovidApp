@@ -8,12 +8,16 @@ import androidx.annotation.NonNull;
 import com.example.habobooking.Model.Barber;
 import com.example.habobooking.Model.MyToken;
 import com.example.habobooking.Model.Salon;
+import com.example.habobooking.Model.TimeSlot;
 import com.example.habobooking.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import io.paperdb.Paper;
 
@@ -26,12 +30,18 @@ public class Common {
     public static final String KEY_STEP = "STEP";
     public static final String KEY_BARBER_SELECTED = "BARBER_SELECTED";
     public static final int TIME_SLOT_TOTAL = 20;
+    public static final Object DISBALE_TAG = "DISABLE";
+    public static final String KEY_TIME_SLOT = "TIME_SLOT";
+    public static final String KEY_CONFIRM_BOOKING = "CONFIRM_BOOKING";
     public static String IS_LOGIN = "IsLogin";
     public static User currentUser;
     public static Salon currentSalon;
     public static int step = 0;
     public static String city = "";
     public static Barber currentBarber;
+    public static int currentTimeSlot = -1;
+    public static Calendar currentDate = Calendar.getInstance();
+    public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd_MM_yyyy");
 
     public static String convertTimeSlotToString(int slot) {
         switch(slot) {
