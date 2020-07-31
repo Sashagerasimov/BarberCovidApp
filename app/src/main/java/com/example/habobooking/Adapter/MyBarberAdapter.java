@@ -62,7 +62,7 @@ public class MyBarberAdapter extends RecyclerView.Adapter<MyBarberAdapter.MyView
 
                 holder.card_barber.setBackgroundColor(
                         context.getResources()
-                        .getColor(android.R.color.holo_orange_dark)
+                        .getColor(android.R.color.holo_blue_dark)
                 );
 
                 Intent intent = new Intent(Common.KEY_ENABLE_BUTTON_NEXT);
