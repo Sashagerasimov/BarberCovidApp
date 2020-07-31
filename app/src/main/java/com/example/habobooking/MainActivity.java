@@ -63,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.txt_skip)
     void skipLoginJustGoHome(){
-        Intent intent = new Intent(this,HomeActivity.class);
+
+        Intent intent = new Intent(this,BarbershopprofileActivity.class);
         intent.putExtra(Common.IS_LOGIN, false);
         startActivity(intent);
 

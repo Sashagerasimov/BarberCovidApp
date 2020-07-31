@@ -1,15 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark">
 
-    <TextView
-        android:text="STEP 4"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </TextView>
+    <ImageView
+        android:src="@drawable/habo_logo"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="100dp"
+        android:layout_height="100dp">
+    </ImageView>
 
-</RelativeLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:background="@drawable/rounded_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="Thanks for booking with us today!"
+            android:textAllCaps="true"
+            android:textSize="18sp"
+            android:fontFamily="@font/bellerose"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+
+        <TextView
+            android:text="Booking Details:"
+            android:textAllCaps="true"
+            android:fontFamily="@font/bellerose"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/ic_event_note_black_24dp"
+                android:layout_gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/txt_booking_time_text"
+                android:text="10:00 AM on 01/01/2001"
+                android:textSize="14sp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/bellerose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/ic_account_circle_black_24dp"
+                android:layout_gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/txt_booking_barber_text"
+                android:text="Collin Zhang"
+                android:textSize="14sp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/bellerose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+
+        </LinearLayout>
+
+        <View
+            android:layout_marginTop="4dp"
+            android:background="@android:color/background_dark"
+            android:layout_width="match_parent"
+            android:layout_height="1dp">
+        </View>
+
+        <TextView
+            android:padding="16dp"
+            android:id="@+id/txt_salon_name"
+            android:text="Salon Test 1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:fontFamily="@font/bellerose"
+            android:textAllCaps="true">
+        </TextView>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/ic_web_black_24dp"
+                android:layout_gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/txt_salon_website"
+                android:text="www.thisisatestsite.com.au"
+                android:textSize="14sp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/bellerose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/ic_local_phone_black_24dp"
+                android:layout_gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/txt_salon_phone"
+                android:text="(02) 9868 7853"
+                android:textSize="14sp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/bellerose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/ic_access_time_black_24dp"
+                android:layout_gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/txt_salon_open_hours"
+                android:text="9:00 AM - 7:00 PM"
+                android:textSize="14sp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/bellerose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/ic_location_on_black_24dp"
+                android:layout_gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/txt_salon_address"
+                android:text="12 Smith Street, Epping 2121 NSW"
+                android:textSize="14sp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/bellerose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:text="CONFRIM"
+            android:background="@color/colorButton"
+            android:textColor="@android:color/white"
+            android:layout_above="@+id/txt_skip"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

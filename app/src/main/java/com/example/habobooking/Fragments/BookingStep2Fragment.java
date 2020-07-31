@@ -74,6 +74,7 @@ public class BookingStep2Fragment extends Fragment {
 
         View itemView = inflater.inflate(R.layout.fragment_booking_step_two,container,false);
 
+        System.out.println("hello this is step 2");
         unbinder = ButterKnife.bind(this,itemView);
         
         initView();
