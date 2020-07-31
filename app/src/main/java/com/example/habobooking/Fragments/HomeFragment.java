@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +30,7 @@ import com.example.habobooking.Interface.IBannerLoadListener;
 import com.example.habobooking.Interface.IBookingInfoLoadListener;
 import com.example.habobooking.Interface.ILookbookLoadListener;
 import com.example.habobooking.Model.Banner;
+import com.example.habobooking.ProfileActivity;
 import com.example.habobooking.Model.BookingInformation;
 import com.example.habobooking.Model.User;
 import com.example.habobooking.R;
@@ -43,6 +46,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -61,9 +65,12 @@ import ss.com.bannerslider.Slider;
 public class HomeFragment extends Fragment implements IBannerLoadListener, ILookbookLoadListener, IBookingInfoLoadListener {
 
     private Unbinder unbinder;
+    private Button profileBtn;
 
     @BindView(R.id.layout_user_information)
     LinearLayout layout_user_information;
+    @BindView(R.id.ivProfile)
+    ImageView ivProfile;
     @BindView(R.id.txt_user_name)
     TextView txt_user_name;
     @BindView(R.id.banner_slider)
@@ -114,6 +121,7 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, ILook
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         unbinder = ButterKnife.bind(this,view);
+        profileBtn = view.findViewById(R.id.profileBtn);
 
         // initiate
         Slider.init(new PicassoImageLoadingService());
@@ -131,6 +139,14 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, ILook
             loadLookBook();
             loadUserBooking();
         }
+
+        //Listener for the profile button
+        ivProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), ProfileActivity.class));
+            }
+        });
 
         return view;
     }
