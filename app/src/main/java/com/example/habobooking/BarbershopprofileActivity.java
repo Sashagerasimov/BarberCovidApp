@@ -86,23 +86,20 @@ public class BarbershopprofileActivity extends AppCompatActivity {
 
         //Intent to grab the document
         //ID of the barbershop that was selected
-        //Intent explicitIntent = getIntent();
-        //documentID = explicitIntent.getStringExtra("id");
+        Intent explicitIntent = getIntent();
+        documentID = explicitIntent.getStringExtra("id");
+        barberSuburb = explicitIntent.getStringExtra("suburb");
 
-        //Extract the reference of all the branches from Sydney
-       // barbershopListRef = FirebaseFirestore.getInstance().collection("AllSalon").document("Sydney").collection("Branch");
 
 
         //setting defaults
         barbershopName = "HaboBooking";
-        barberSuburb = "Bella Vista";
-
-
+       //barberSuburb = "Parramatta";
         //Grab the document id
-        documentID = "1qm8MoF5skj0ZFA5EaY8";
+       // documentID = "e76WkaOXw7f132wjclyb";
 
         //Extracting specific barbershop
-        barbershopProfileRef = FirebaseFirestore.getInstance().collection("AllSalon").document("Sydney").collection("Branch").document(documentID);
+        barbershopProfileRef = FirebaseFirestore.getInstance().collection("AllSalon").document(barberSuburb).collection("Branch").document(documentID);
 
         loadBarbershopProfile();
         //not sure what to do with this
@@ -172,28 +169,46 @@ public class BarbershopprofileActivity extends AppCompatActivity {
 
                     barbershopDescription = documentSnapshot.getString("Description");
                     shopDescription.setText(barbershopDescription);
-                    barbershopAddress = documentSnapshot.getString("address");
+                    barbershopAddress = documentSnapshot.getString("Address");
                     shopAddress.setText(barbershopAddress);
 
                     collapsingToolbarLayout.setTitle(barbershopName);
-                    barbershopName = documentSnapshot.getString("name");
+                    barbershopName = documentSnapshot.getString("Name");
                     System.out.println("this is the name " + barbershopName);
                     collapsingToolbarLayout.setTitle(barbershopName);
 
 
-                    barbershopOpenHours = documentSnapshot.getString("Opening Hours");
+                    barbershopOpenHours = documentSnapshot.getString("OpeningH");
+
+                    int positionOfWeekend =  barbershopOpenHours.indexOf("Weekends");
+                    String weekdays = barbershopOpenHours.substring(0,positionOfWeekend-1);
+                    String weekends = barbershopOpenHours.substring(positionOfWeekend);
+
+                    barbershopOpenHours = weekdays + "\n" + weekends;
+
                     shopOpenHours.setText(barbershopOpenHours);
 
-                    barbershopPhone = documentSnapshot.getString("phone");
+                    barbershopPhone = documentSnapshot.getString("Phone");
                     shopPhone.setText(barbershopPhone);
 
-                    barbershopImageOne = documentSnapshot.getString("image 1");
+                    barbershopImageOne = documentSnapshot.getString("image1");
                     Picasso.get().load(barbershopImageOne).into(barbershopImage1);
 
                     barbershopPrices= documentSnapshot.getString("Prices");
+                    System.out.println("This is prices " + barbershopPrices);
+                    int positionOfTeens = barbershopPrices.indexOf("Teen");
+                    int positionOfKids = barbershopPrices.indexOf("Kid");
+                    String priceAdults = barbershopPrices.substring(0,positionOfTeens-1);
+                    System.out.println("this is price of adults" + priceAdults);
+
+                    String priceTeens = barbershopPrices.substring(positionOfTeens, positionOfKids-1);
+                    System.out.println("this is price of teens " + priceTeens);
+                    String priceKids = barbershopPrices.substring(positionOfKids);
+
+                    barbershopPrices = priceKids + "\n" + priceTeens + "\n" + priceAdults;
                     shopPrices.setText(barbershopPrices);
 
-                    covidCapacity = documentSnapshot.getDouble("COVID-19 Capacity");
+                    covidCapacity = documentSnapshot.getDouble("Covid19C");
 
                    int covidInteger = (int) covidCapacity;
                    String covidString = Integer.toString(covidInteger);
@@ -203,16 +218,7 @@ public class BarbershopprofileActivity extends AppCompatActivity {
                     shopSuburb.setText(barberSuburb);
 
 
-
-
-
-
-
-
                     //barbershop
-
-
-
 
 
 
@@ -220,7 +226,8 @@ public class BarbershopprofileActivity extends AppCompatActivity {
                     //if this document ref doesnt exist
                     Toast.makeText(BarbershopprofileActivity.this, "This profile does not exist!",Toast.LENGTH_SHORT).show();
 
-                    System.out.println("This document ref doesn't exist");
+                    System.out.println("This document ref doesn't exist: " + documentID);
+                    System.out.println("This is the suburb that was passed: " + barberSuburb);
                 }
 
             }
