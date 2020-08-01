@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.habobooking.BarbershopprofileActivity;
 import com.example.habobooking.BookingActivity;
 import com.example.habobooking.Model.Banner;
 import com.example.habobooking.Model.Barbershop;
@@ -64,9 +65,11 @@ public class LookbookAdapter extends RecyclerView.Adapter<LookbookAdapter.MyView
 
             Barbershop shop = shops.get(position);
             String key = shop.getId();
+            String suburb = shop.getSuburb();
 
-            Intent intent = new Intent(view.getContext(), BookingActivity.class);
+            Intent intent = new Intent(view.getContext(), BarbershopprofileActivity.class);
             intent.putExtra("id", key);
+            intent.putExtra("suburb", suburb);
             //System.out.println("0000000000000000000000000000000000000000000000------" + key);
             view.getContext().startActivity(intent);
         }
