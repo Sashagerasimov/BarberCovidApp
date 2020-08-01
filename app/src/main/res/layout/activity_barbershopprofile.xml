@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -39,6 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:adjustViewBounds="true"
+                    android:background="@color/colorPrimaryDark"
                     android:src="@drawable/no_image_available"
                     app:layout_collapseMode="parallax"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +51,7 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@color/loginButton"
+                    android:background="@color/colorPrimaryDark"
                     app:popupTheme="@color/loginButtonText">
 
                 </androidx.appcompat.widget.Toolbar>
@@ -92,17 +94,24 @@
 
                             <TextView
                                 android:id="@+id/textView9"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Address" />
+                                android:layout_weight="0.5"
+                                android:fontFamily="@font/kollektif"
+                                android:text="Address"
+                                android:textColor="#000000"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/textView8"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Phone number" />
+                                android:layout_weight="0.5"
+                                android:fontFamily="@font/kollektif"
+                                android:text="Phone number"
+                                android:textColor="#000000"
+                                android:textStyle="bold" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -112,17 +121,19 @@
 
                             <TextView
                                 android:id="@+id/barbershopAddressTxt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="barbershopAddressTxt" />
+                                android:layout_weight="0.5"
+                                android:fontFamily="@font/bellerose"
+                                android:text="Address" />
 
                             <TextView
                                 android:id="@+id/phoneNumberTxt"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="PhoneNumberTxt" />
+                                android:layout_weight="0.5"
+                                android:fontFamily="@font/bellerose"
+                                android:text="Phone Number" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -131,17 +142,20 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="COVID-19 Capacity" />
+                                android:layout_weight="0.5"
+                                android:text="COVID-19 Capacity"
+                                android:textColor="#000000"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/covidCapacityTxtView"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="TextView" />
+                                android:layout_weight="0.5"
+                                android:fontFamily="@font/bellerose"
+                                android:text="Covid Capacity" />
                         </LinearLayout>
 
 
@@ -166,57 +180,80 @@
 
                         <TextView
                             android:id="@+id/textViewBarberDescription"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Description" />
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/kollektif"
+                            android:text="Description"
+                            android:textColor="#000000"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/barbershopDescription"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/bellerose"
                             android:text="Description" />
 
                         <TextView
                             android:id="@+id/textView14"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Opening Hours" />
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/kollektif"
+                            android:text="Opening Hours"
+                            android:textColor="#000000"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/openingHoursTxtView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/bellerose"
                             android:text="Open Hours" />
 
                         <TextView
                             android:id="@+id/textView16"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Prices" />
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/kollektif"
+                            android:text="Prices"
+                            android:textColor="#000000"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/pricesTxtView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/bellerose"
                             android:text="Prices" />
-
-                        <ImageView
-                            android:id="@+id/googleicon_bProfile"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            app:srcCompat="@drawable/google_icon" />
 
                         <TextView
                             android:id="@+id/textvie3434"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Suburb" />
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/kollektif"
+                            android:text="Suburb"
+                            android:textColor="#000000"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/suburbBarberProfileTxtView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/bellerose"
                             android:text="Suburb" />
+
+                        <ImageView
+                            android:id="@+id/googleicon_bProfile"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center_horizontal"
+                            app:srcCompat="@drawable/google_icon" />
+
+
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
