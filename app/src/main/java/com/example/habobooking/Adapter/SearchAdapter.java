@@ -47,8 +47,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         Barbershop mCurrent = shops.get(position);
 
         String name = mCurrent.getName();
+        String suburb = mCurrent.getSuburb();
 
         holder.name.setText(name);
+        holder.suburb.setText(suburb);
     }
 
     @Override
@@ -73,7 +75,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 for (Barbershop shop : shopsFullList){
-                    if (shop.getName().toLowerCase().contains(filterPattern)){
+                    if (shop.getName().toLowerCase().contains(filterPattern) || shop.getSuburb().toLowerCase().contains(filterPattern)){
                         filteredList.add(shop);
                     }
                 }
@@ -96,11 +98,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public final TextView name;
+        public final TextView suburb;
         final SearchAdapter mAdapter;
 
         public MyViewHolder(@NonNull View itemView, SearchAdapter adapter) {
              super(itemView);
              name = itemView.findViewById(R.id.name);
+             suburb = itemView.findViewById(R.id.searchSuburb);
              this.mAdapter = adapter;
              itemView.setOnClickListener(this);
         }

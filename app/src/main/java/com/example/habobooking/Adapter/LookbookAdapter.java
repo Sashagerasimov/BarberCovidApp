@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,7 +41,9 @@ public class LookbookAdapter extends RecyclerView.Adapter<LookbookAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        Picasso.get().load(shops.get(i).getImage3()).into(myViewHolder.imageView);
+        Picasso.get().load(shops.get(i).getImage1()).into(myViewHolder.imageView);
+        myViewHolder.barbershopName.setText(shops.get(i).getName());
+
     }
 
     @Override
@@ -50,10 +53,13 @@ public class LookbookAdapter extends RecyclerView.Adapter<LookbookAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
+        TextView barbershopName;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imageView = (ImageView)itemView.findViewById(R.id.image_look_book);
+            barbershopName = itemView.findViewById(R.id.barberName);
             itemView.setOnClickListener(this);
         }
 
