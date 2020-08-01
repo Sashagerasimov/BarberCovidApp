@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.view.LayoutInflater;
@@ -244,13 +245,17 @@ public class BookingStep4Fragment extends Fragment {
 
             event.put(CalendarContract.Events.DTSTART,start.getTime());
             event.put(CalendarContract.Events.DTEND,end.getTime());
-            event.put(CalendarContract.Events.HAS_ALARM,1);
             event.put(CalendarContract.Events.ALL_DAY,0);
+            event.put(CalendarContract.Events.HAS_ALARM,1);
 
             String timeZone = TimeZone.getDefault().getID();
             event.put(CalendarContract.Events.EVENT_TIMEZONE,timeZone);
 
-            Uri calendars = Uri.parse("content://com.android.calendar/calendars");
+            Uri calendars;
+            if(Build.VERSION.SDK_INT >= 8)
+                calendars = Uri.parse("content://com.android.calendar/calendars");
+            else
+                calendars = Uri.parse("content://calendar/events");
 
             getActivity().getContentResolver().insert(calendars,event);
 
