@@ -108,7 +108,8 @@ public class HomeActivity extends AppCompatActivity {
     private boolean loadFragment(Fragment fragment) {
         if(fragment != null){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment)
-                    .commit();
+                    //tentative fix for the onSavedInstance bug
+                    .commitAllowingStateLoss();
             return true;
         }
         return false;
