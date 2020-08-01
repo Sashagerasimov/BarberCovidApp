@@ -6,18 +6,21 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 
 import com.example.habobooking.Model.Barber;
+import com.example.habobooking.Model.BookingInformation;
 import com.example.habobooking.Model.MyToken;
 import com.example.habobooking.Model.Salon;
 import com.example.habobooking.Model.TimeSlot;
 import com.example.habobooking.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import io.paperdb.Paper;
 
@@ -33,6 +36,7 @@ public class Common {
     public static final Object DISBALE_TAG = "DISABLE";
     public static final String KEY_TIME_SLOT = "TIME_SLOT";
     public static final String KEY_CONFIRM_BOOKING = "CONFIRM_BOOKING";
+    public static final String EVENT_URI_CACHE = "URI_EVENT_SAVE";
     public static String IS_LOGIN = "IsLogin";
     public static User currentUser;
     public static Salon currentSalon;
@@ -42,6 +46,8 @@ public class Common {
     public static int currentTimeSlot = -1;
     public static Calendar bookingDate = Calendar.getInstance();
     public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd_MM_yyyy");
+    public static BookingInformation currentBooking;
+    public static String currentBookingId = "";
 
     public static String convertTimeSlotToString(int slot) {
         switch(slot) {
@@ -90,6 +96,12 @@ public class Common {
             default:
                 return "Closed";
         }
+    }
+
+    public static String convertTimeStampToStringKey(Timestamp timestamp) {
+        Date date = timestamp.toDate();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd_MM_yyyy");
+        return simpleDateFormat.format(date);
     }
 
     public static enum TOKEN_TYPE{

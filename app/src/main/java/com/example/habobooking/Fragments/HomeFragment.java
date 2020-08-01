@@ -1,15 +1,20 @@
 package com.example.habobooking.Fragments;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,6 +35,7 @@ import com.example.habobooking.HomeActivity;
 import com.example.habobooking.Interface.IBannerLoadListener;
 import com.example.habobooking.Interface.IBarbershopBannerLoadListener;
 import com.example.habobooking.Interface.IBookingInfoLoadListener;
+import com.example.habobooking.Interface.IBookingInformationChangedListener;
 import com.example.habobooking.Interface.ILookbookLoadListener;
 import com.example.habobooking.Model.Banner;
 import com.example.habobooking.Model.Barbershop;
@@ -41,12 +47,14 @@ import com.example.habobooking.SearchActivity;
 import com.example.habobooking.Service.PicassoImageLoadingService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -62,12 +70,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import dmax.dialog.SpotsDialog;
+import io.paperdb.Paper;
 import ss.com.bannerslider.Slider;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment implements IBannerLoadListener, IBarbershopBannerLoadListener, IBookingInfoLoadListener {
+public class HomeFragment extends Fragment implements IBannerLoadListener, IBarbershopBannerLoadListener, IBookingInfoLoadListener, IBookingInformationChangedListener {
 
     private Unbinder unbinder;
     private Button profileBtn;
@@ -94,6 +104,110 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, IBarb
     @BindView(R.id.txt_time_remaining)
     TextView txt_time_remaining;
 
+    AlertDialog dialog;
+
+    @OnClick(R.id.btn_delete_booking)
+    void deleteBooking()
+    {
+        deleteBookingFromBarber(false);
+    }
+
+    @OnClick(R.id.btn_change_booking)
+    void changeBooking(){
+        changeBookingFromUser();
+    }
+
+    private void changeBookingFromUser() {
+        androidx.appcompat.app.AlertDialog.Builder confirmDialog = new androidx.appcompat.app.AlertDialog.Builder(getActivity())
+                .setCancelable(false)
+                .setTitle("Warning!")
+                .setMessage("Are you sure you want to change this booking.\nIt will need to be deleted and re-booked")
+                .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }).setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        deleteBookingFromBarber(true);
+                    }
+                });
+        confirmDialog.show();
+    }
+
+    private void deleteBookingFromBarber(boolean isChanged) {
+        if(Common.currentBooking != null)
+        {
+            dialog.show();
+
+            DocumentReference barberBookingInfo = FirebaseFirestore.getInstance()
+                    .collection("AllSalon")
+                    .document(Common.currentBooking.getCityBook())
+                    .collection("Branch")
+                    .document(Common.currentBooking.getSalonId())
+                    .collection("Barber")
+                    .document(Common.currentBooking.getBarberId())
+                    .collection(Common.convertTimeStampToStringKey(Common.currentBooking.getTimestamp()))
+                    .document(Common.currentBooking.getSlot().toString());
+
+            barberBookingInfo.delete().addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    deleteBookingFromUser(isChanged);
+                }
+            });
+        }
+        else
+        {
+            Toast.makeText(getContext(),"Current Booking must not be empty", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void deleteBookingFromUser(boolean isChanged) {
+        if(!TextUtils.isEmpty(Common.currentBookingId))
+        {
+            DocumentReference userBookingInfo = FirebaseFirestore.getInstance()
+                    .collection("User")
+                    .document(Common.currentUser.getPhoneNumber())
+                    .collection("Booking")
+                    .document(Common.currentBookingId);
+
+            userBookingInfo.delete().addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Paper.init(getActivity());
+                    Uri eventUri = Uri.parse(Paper.book().read(Common.EVENT_URI_CACHE).toString());
+                    getActivity().getContentResolver().delete(eventUri,null,null);
+                    Toast.makeText(getActivity(), "Booking deleted successfully!", Toast.LENGTH_SHORT).show();
+
+                    loadUserBooking();
+
+                    if(isChanged)
+                        iBookingInformationChangedListener.onBookingInformationChanged();
+
+                    dialog.dismiss();
+                }
+            });
+        }
+        else
+        {
+            dialog.dismiss();
+            
+            Toast.makeText(getContext(), "Booking information and ID must not be empty", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @OnClick(R.id.card_view_booking)
     void booking()
     {
@@ -105,10 +219,9 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, IBarb
 
     //interface
     IBannerLoadListener iBannerLoadListener;
-    ILookbookLoadListener iLookbookLoadListener;
     IBookingInfoLoadListener iBookingInfoLoadListener;
     IBarbershopBannerLoadListener iBarbershopLoadListener;
-
+    IBookingInformationChangedListener iBookingInformationChangedListener;
     //barbershop store
     List<Barbershop> barbershops = new ArrayList<>();
 
@@ -139,7 +252,6 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, IBarb
                 .collection("AllSalon")
                 .document("Blacktown")
                 .collection("Branch");
-
     }
 
     @Override
@@ -148,6 +260,12 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, IBarb
         loadUserBooking();
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        dialog = new SpotsDialog.Builder().setContext(getContext()).setCancelable(false).build();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -162,6 +280,7 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, IBarb
         iBannerLoadListener = this;
         iBookingInfoLoadListener = this;
         iBarbershopLoadListener = this;
+        iBookingInformationChangedListener = this;
 
         //get button
         ImageButton search = view.findViewById(R.id.searchButton);
@@ -306,7 +425,7 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, IBarb
                                 for(QueryDocumentSnapshot queryDocumentSnapshot:task.getResult())
                                 {
                                     BookingInformation bookingInformation = queryDocumentSnapshot.toObject(BookingInformation.class);
-                                    iBookingInfoLoadListener.onBookingInfoLoadSuccess(bookingInformation);
+                                    iBookingInfoLoadListener.onBookingInfoLoadSuccess(bookingInformation,queryDocumentSnapshot.getId());
                                     break;
                                 }
                             }
@@ -351,7 +470,11 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, IBarb
     }
 
     @Override
-    public void onBookingInfoLoadSuccess(BookingInformation bookingInformation) {
+    public void onBookingInfoLoadSuccess(BookingInformation bookingInformation,String bookingId) {
+
+        Common.currentBooking = bookingInformation;
+        Common.currentBookingId = bookingId;
+
         txt_salon_address.setText(bookingInformation.getSalonAddress());
         txt_salon_barber.setText(bookingInformation.getBarberName());
         txt_time.setText(bookingInformation.getTime());
@@ -361,10 +484,17 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, IBarb
         txt_time_remaining.setText(dateRemain);
 
         card_booking_info.setVisibility(View.VISIBLE);
+
+        dialog.dismiss();
     }
 
     @Override
     public void onBookingInfoLoadFailed(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBookingInformationChanged() {
+        startActivity(new Intent(getActivity(),BookingActivity.class));
     }
 }
