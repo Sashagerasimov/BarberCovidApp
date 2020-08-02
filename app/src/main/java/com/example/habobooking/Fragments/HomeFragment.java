@@ -80,7 +80,6 @@ import ss.com.bannerslider.Slider;
 public class HomeFragment extends Fragment implements IBannerLoadListener, IBarbershopBannerLoadListener, IBookingInfoLoadListener, IBookingInformationChangedListener {
 
     private Unbinder unbinder;
-    private Button profileBtn;
 
     @BindView(R.id.layout_user_information)
     LinearLayout layout_user_information;
@@ -273,7 +272,6 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, IBarb
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         unbinder = ButterKnife.bind(this,view);
-        profileBtn = view.findViewById(R.id.profileBtn);
 
         // initiate
         Slider.init(new PicassoImageLoadingService());
