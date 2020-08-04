@@ -57,7 +57,7 @@ public class MySalonAdapter extends RecyclerView.Adapter<MySalonAdapter.MyViewHo
                     cardView.setCardBackgroundColor(context.getResources().getColor(android.R.color.white));
 
                 holder.card_salon.setCardBackgroundColor(context.getResources()
-                .getColor(android.R.color.holo_blue_dark));
+                .getColor(R.color.colorButton));
 
                 //broadcast to enable next button
                 Intent intent = new Intent(Common.KEY_ENABLE_BUTTON_NEXT);

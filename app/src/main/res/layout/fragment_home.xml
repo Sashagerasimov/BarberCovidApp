@@ -53,168 +53,62 @@
     </LinearLayout>
 
     <LinearLayout
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:padding="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_booking"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="4dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent">
+
+                <ImageView
+                    android:src="@drawable/ic_event_note_white_24dp"
+                    android:layout_width="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="50dp">
+                </ImageView>
+
+                <TextView
+                    android:text="Book an appointment"
+                    android:fontFamily="@font/bellerose"
+                    android:textColor="@android:color/white"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="@dimen/textCardSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:weightSum="4"
-            android:padding="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_booking"
-                android:layout_marginRight="8dp"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                app:cardUseCompatPadding="true"
-                app:cardCornerRadius="8dp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:src="@drawable/ic_event_note_black_24dp"
-                        android:layout_width="50dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="50dp">
-                    </ImageView>
-
-                    <TextView
-                        android:text="Booking"
-                        android:fontFamily="@font/bellerose"
-                        android:layout_gravity="center_horizontal"
-                        android:textSize="@dimen/textCardSize"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                    </TextView>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_cart"
-                android:layout_marginRight="8dp"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                app:cardUseCompatPadding="true"
-                app:cardCornerRadius="8dp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:src="@drawable/ic_shopping_cart_black_24dp"
-                        android:layout_width="50dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="50dp">
-                    </ImageView>
-
-                    <TextView
-                        android:text="Cart"
-                        android:fontFamily="@font/bellerose"
-                        android:layout_gravity="center_horizontal"
-                        android:textSize="@dimen/textCardSize"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                    </TextView>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_history"
-                android:layout_marginRight="8dp"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                app:cardUseCompatPadding="true"
-                app:cardCornerRadius="8dp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:src="@drawable/ic_history_black_24dp"
-                        android:layout_width="50dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="50dp">
-                    </ImageView>
-
-                    <TextView
-                        android:text="History"
-                        android:fontFamily="@font/bellerose"
-                        android:layout_gravity="center_horizontal"
-                        android:textSize="@dimen/textCardSize"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                    </TextView>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_notifications"
-                android:layout_marginRight="8dp"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                app:cardUseCompatPadding="true"
-                app:cardCornerRadius="8dp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:src="@drawable/ic_notifications_black_24dp"
-                        android:layout_width="50dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="50dp">
-                    </ImageView>
-
-                    <TextView
-                        android:text="Notification"
-                        android:fontFamily="@font/bellerose"
-                        android:layout_gravity="center_horizontal"
-                        android:textSize="@dimen/textCardSize"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                    </TextView>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-        </LinearLayout>
-
         <androidx.cardview.widget.CardView
             android:id="@+id/card_booking_info"
             app:cardCornerRadius="4dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_width="match_parent"
@@ -224,7 +118,8 @@
                 android:orientation="vertical"
                 android:padding="4dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/colorButton">
 
                     <LinearLayout
                 android:orientation="horizontal"
@@ -343,10 +238,12 @@
                             android:id="@+id/btn_change_booking"
                             android:layout_marginRight="4dp"
                             android:text="Change"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:textColor="@android:color/white"
                             android:layout_weight="1"
                             android:background="@drawable/button_border_bg"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="35dp"
                             tools:ignore="Suspicious0dp">
                         </Button>
 
@@ -355,10 +252,12 @@
                             android:id="@+id/btn_delete_booking"
                             android:layout_marginRight="4dp"
                             android:text="Delete"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:textColor="@android:color/white"
                             android:layout_weight="1"
                             android:background="@drawable/button_border_bg"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="35dp"
                             tools:ignore="Suspicious0dp">
                         </Button>
 
@@ -377,16 +276,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ss.com.bannerslider.Slider
-            android:id="@+id/banner_slider"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="2dp">
+            android:padding="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -394,23 +287,24 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="100dp"
-                android:layout_marginEnd="100dp"
+                android:layout_marginStart="0dp"
                 android:fontFamily="@font/bellerose"
-                android:text="Book Now"
+                android:text="SEARCH FOR SALONS"
                 android:textAlignment="center"
                 android:textColor="@color/colorButton"
-                android:textSize="18sp"></TextView>
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat"></TextView>
 
             <ImageButton
                 android:id="@+id/searchButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="30dp"
-                android:src="?android:attr/actionModeWebSearchDrawable" />
+                android:src="?android:attr/actionModeWebSearchDrawable"
+                android:background="@color/colorButton"/>
 
         </RelativeLayout>
 
@@ -423,7 +317,5 @@
         </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
-
-
 
 </LinearLayout>

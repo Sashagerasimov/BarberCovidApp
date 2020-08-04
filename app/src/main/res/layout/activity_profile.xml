@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/colorBackground"
     tools:context=".ProfileActivity">
 
     <TextView
@@ -11,9 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:layout_marginEnd="284dp"
-        android:text="Profile"
+
+        android:text="My Details"
         android:textSize="32sp"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,6 +24,7 @@
         android:id="@+id/textInputLayout2"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/colorPrimaryDark"
         app:layout_constraintTop_toBottomOf="@+id/ProfileActivity"
         tools:layout_editor_absoluteX="1dp">
 
@@ -50,6 +54,7 @@
         android:id="@+id/textInputLayout4"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/colorPrimaryDark"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
         tools:layout_editor_absoluteX="1dp">
 
@@ -67,6 +72,7 @@
         android:layout_marginTop="52dp"
         android:layout_marginEnd="160dp"
         android:text="Update"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

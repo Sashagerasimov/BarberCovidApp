@@ -36,8 +36,6 @@ import com.example.habobooking.Interface.IBannerLoadListener;
 import com.example.habobooking.Interface.IBarbershopBannerLoadListener;
 import com.example.habobooking.Interface.IBookingInfoLoadListener;
 import com.example.habobooking.Interface.IBookingInformationChangedListener;
-import com.example.habobooking.Interface.ILookbookLoadListener;
-import com.example.habobooking.Model.Banner;
 import com.example.habobooking.Model.Barbershop;
 import com.example.habobooking.ProfileActivity;
 import com.example.habobooking.Model.BookingInformation;
@@ -77,7 +75,7 @@ import ss.com.bannerslider.Slider;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment implements IBannerLoadListener, IBarbershopBannerLoadListener, IBookingInfoLoadListener, IBookingInformationChangedListener {
+public class HomeFragment extends Fragment implements IBarbershopBannerLoadListener, IBookingInfoLoadListener, IBookingInformationChangedListener {
 
     private Unbinder unbinder;
 
@@ -87,8 +85,6 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, IBarb
     ImageView ivProfile;
     @BindView(R.id.txt_user_name)
     TextView txt_user_name;
-    @BindView(R.id.banner_slider)
-    Slider banner_slider;
     @BindView(R.id.recycler_look_book)
     RecyclerView recycler_look_book;
 
@@ -275,7 +271,6 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, IBarb
 
         // initiate
         Slider.init(new PicassoImageLoadingService());
-        iBannerLoadListener = this;
         iBookingInfoLoadListener = this;
         iBarbershopLoadListener = this;
         iBookingInformationChangedListener = this;
@@ -289,7 +284,6 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, IBarb
         {
             setUserInformation();
             loadUserBooking();
-            loadBanner();
             loadLookBook();
             loadUserBooking();
             search.setOnClickListener(view1 -> {
@@ -362,30 +356,6 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, IBarb
         });
     }
 
-    private void loadBanner() {
-        bannerRef.get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        List<Banner> banners = new ArrayList<>();
-                        if(task.isSuccessful())
-                        {
-                            for(QueryDocumentSnapshot bannerSnapShot:task.getResult())
-                            {
-                                Banner banner = bannerSnapShot.toObject(Banner.class);
-                                banners.add(banner);
-                            }
-                            iBannerLoadListener.onBannerLoadSuccess(banners);
-                        }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-               iBannerLoadListener.onBannerLoadFailed(e.getMessage());
-            }
-        });
-    }
-
     private void setUserInformation() {
         layout_user_information.setVisibility(View.VISIBLE);
         txt_user_name.setText(Common.currentUser.getName());
@@ -438,16 +408,6 @@ public class HomeFragment extends Fragment implements IBannerLoadListener, IBarb
                 iBookingInfoLoadListener.onBookingInfoLoadFailed(e.getMessage());
             }
         });
-    }
-
-    @Override
-    public void onBannerLoadSuccess(List<Banner> banners) {
-        banner_slider.setAdapter(new HomeSliderAdapter(banners));
-    }
-
-    @Override
-    public void onBannerLoadFailed(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

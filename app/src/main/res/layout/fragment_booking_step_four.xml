@@ -5,16 +5,10 @@
     android:layout_height="match_parent"
     android:background="@android:color/background_dark">
 
-    <ImageView
-        android:src="@drawable/habo_logo"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="100dp"
-        android:layout_height="100dp">
-    </ImageView>
-
     <LinearLayout
         android:orientation="vertical"
         android:padding="8dp"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:background="@drawable/rounded_dialog"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -211,7 +205,7 @@
         <Button
             android:id="@+id/btn_confirm"
             android:text="CONFRIM"
-            android:background="@color/colorButton"
+            android:background="@color/colorAccent"
             android:textColor="@android:color/white"
             android:layout_above="@+id/txt_skip"
             android:layout_marginTop="8dp"

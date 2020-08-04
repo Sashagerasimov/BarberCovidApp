@@ -17,7 +17,7 @@
         <TextView
             android:id="@+id/txt_time_slot"
             android:text="9:00 - 9:30"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:fontFamily="@font/bellerose"
             android:gravity="center_horizontal"
