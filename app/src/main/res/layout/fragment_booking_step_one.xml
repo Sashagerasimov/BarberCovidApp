@@ -8,7 +8,9 @@
     <com.jaredrummler.materialspinner.MaterialSpinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bellerose"
+        android:textStyle="bold">
     </com.jaredrummler.materialspinner.MaterialSpinner>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -65,12 +65,8 @@ public class BookingStep4Fragment extends Fragment {
     TextView txt_salon_address;
     @BindView(R.id.txt_salon_name)
     TextView txt_salon_name;
-    @BindView(R.id.txt_salon_open_hours)
-    TextView txt_salon_open_hours;
     @BindView(R.id.txt_salon_phone)
     TextView txt_salon_phone;
-    @BindView(R.id.txt_salon_website)
-    TextView txt_salon_website;
 
     @OnClick(R.id.btn_confirm)
     void confirmBooking(){
@@ -236,7 +232,7 @@ public class BookingStep4Fragment extends Fragment {
                 .append(startTime)
                 .append(" with ")
                 .append(Common.currentBarber.getName())
-                .append(" at ")
+                .append(" on ")
                 .append(Common.currentSalon.getName()).toString(),
                         new StringBuilder("Address: ").append(Common.currentSalon.getAddress()).toString());
     }
@@ -330,7 +326,7 @@ public class BookingStep4Fragment extends Fragment {
                 .append(simpleDateFormat.format(Common.bookingDate.getTime())));
 
         txt_salon_address.setText(Common.currentSalon.getAddress());
-        txt_salon_open_hours.setText(Common.currentSalon.getOpenHours());
+        txt_salon_phone.setText(Common.currentSalon.getPhone());
         txt_salon_name.setText(Common.currentSalon.getName());
     }
 

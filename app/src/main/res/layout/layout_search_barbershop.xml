@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:clickable="true"
     android:focusable="true"
-    android:layout_margin="7dp">
+    android:backgroundTint="@android:color/white"
+    android:layout_margin="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,11 +18,13 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text="Error: Name"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/bellerose"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,8 +33,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/bellerose"
             android:text="Error: Suburb"
+            android:textColor="@color/colorButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/name"
             app:layout_constraintTop_toBottomOf="@+id/name" />
