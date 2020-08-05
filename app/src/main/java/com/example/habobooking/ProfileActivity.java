@@ -137,7 +137,8 @@ public class ProfileActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(ProfileActivity.this, "Profile saved", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, "Details saved!", Toast.LENGTH_SHORT).show();
+                finish();
             }
         })
                 .addOnFailureListener(new OnFailureListener() {

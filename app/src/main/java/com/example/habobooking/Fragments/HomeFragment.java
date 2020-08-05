@@ -115,7 +115,7 @@ public class HomeFragment extends Fragment implements IBarbershopBannerLoadListe
         androidx.appcompat.app.AlertDialog.Builder confirmDialog = new androidx.appcompat.app.AlertDialog.Builder(getActivity())
                 .setCancelable(false)
                 .setTitle("Warning!")
-                .setMessage("Are you sure you want to change this booking.\nIt will need to be deleted and re-booked")
+                .setMessage("Are you sure you want to change this booking?\n\nIt will need to be deleted and re-booked.")
                 .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
