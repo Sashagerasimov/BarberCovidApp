@@ -7,22 +7,23 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="539dp"
+        android:layout_height="416dp"
         android:background="@drawable/rounded_dialog"
         android:backgroundTint="@color/colorPrimaryDark"
         android:orientation="vertical"
         android:padding="8dp">
 
         <TextView
-            android:layout_width="281dp"
+            android:layout_width="356dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/bellerose"
+            android:lineSpacingMultiplier="0.5"
             android:text="Thanks for booking with us today!"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:lineSpacingMultiplier="0.5"
-            android:textSize="26sp"
+            android:textSize="20sp"
             android:textStyle="bold"></TextView>
 
         <TextView
@@ -30,16 +31,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/bellerose"
+            android:padding="8dp"
             android:text="Booking Details:"
             android:textAllCaps="true"
-            android:padding="16dp"
             android:textStyle="bold"></TextView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:padding="8dp">
 
             <ImageView
                 android:layout_width="35dp"
@@ -53,10 +54,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="16dp"
-                android:textStyle="bold"
                 android:fontFamily="@font/bellerose"
                 android:text="10:00 AM on 01/01/2001"
-                android:textSize="16sp"></TextView>
+                android:textSize="16sp"
+                android:textStyle="bold"></TextView>
 
         </LinearLayout>
 
@@ -64,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:padding="8dp">
 
             <ImageView
                 android:layout_width="35dp"
@@ -76,12 +77,12 @@
                 android:id="@+id/txt_booking_barber_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:textStyle="bold"
                 android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
                 android:fontFamily="@font/bellerose"
                 android:text="Collin Zhang"
-                android:textSize="16sp"></TextView>
+                android:textSize="16sp"
+                android:textStyle="bold"></TextView>
 
         </LinearLayout>
 
@@ -99,16 +100,15 @@
             android:padding="16dp"
             android:text="Salon Test 1"
             android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textSize="20sp">
-        </TextView>
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:padding="8dp">
 
             <ImageView
                 android:layout_width="35dp"
@@ -120,12 +120,12 @@
                 android:id="@+id/txt_salon_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="16dp"
                 android:fontFamily="@font/bellerose"
                 android:text="(02) 9868 7853"
-                android:textSize="16sp"></TextView>
+                android:textSize="16sp"
+                android:textStyle="bold"></TextView>
 
         </LinearLayout>
 
@@ -133,7 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:padding="8dp">
 
             <ImageView
                 android:layout_width="35dp"
@@ -145,12 +145,12 @@
                 android:id="@+id/txt_salon_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="16dp"
                 android:fontFamily="@font/bellerose"
                 android:text="12 Smith Street, Epping 2121 NSW"
-                android:textSize="16sp"></TextView>
+                android:textSize="16sp"
+                android:textStyle="bold"></TextView>
 
         </LinearLayout>
 
@@ -161,8 +161,10 @@
             android:layout_above="@+id/txt_skip"
             android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
-            android:text="CONFRIM"
-            android:textColor="@android:color/white" />
+            android:fontFamily="@font/bellerose"
+            android:text="CONFIRM"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

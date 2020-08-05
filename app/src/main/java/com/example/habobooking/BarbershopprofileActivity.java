@@ -110,7 +110,7 @@ public class BarbershopprofileActivity extends AppCompatActivity {
 
 
 
-        barbershopName = "THIS IS A TEST";
+        barbershopName = "";
         //make this barbershop name
         collapsingToolbarLayout.setTitle(barbershopName);
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
@@ -128,7 +128,6 @@ public class BarbershopprofileActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Context context = getApplicationContext();
-                Toast.makeText(context, "Moving to booking system", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent (BarbershopprofileActivity.this, BookingActivity.class);
 
