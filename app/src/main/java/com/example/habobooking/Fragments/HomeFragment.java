@@ -21,17 +21,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.habobooking.Adapter.HomeSliderAdapter;
 import com.example.habobooking.Adapter.LookbookAdapter;
 import com.example.habobooking.BookingActivity;
 import com.example.habobooking.Common.Common;
-import com.example.habobooking.HomeActivity;
 import com.example.habobooking.Interface.IBannerLoadListener;
 import com.example.habobooking.Interface.IBarbershopBannerLoadListener;
 import com.example.habobooking.Interface.IBookingInfoLoadListener;
@@ -39,7 +36,6 @@ import com.example.habobooking.Interface.IBookingInformationChangedListener;
 import com.example.habobooking.Model.Barbershop;
 import com.example.habobooking.ProfileActivity;
 import com.example.habobooking.Model.BookingInformation;
-import com.example.habobooking.Model.User;
 import com.example.habobooking.R;
 import com.example.habobooking.SearchActivity;
 import com.example.habobooking.Service.PicassoImageLoadingService;
@@ -47,7 +43,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -62,7 +57,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 //import com.google.firebase.firestore.auth.User;
 
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -80,8 +74,9 @@ import ss.com.bannerslider.Slider;
  */
 public class HomeFragment extends Fragment implements IBarbershopBannerLoadListener, IBookingInfoLoadListener, IBookingInformationChangedListener {
 
-    private Unbinder unbinder;
+    private static final String TAG = "";
     private static final String KEY_NAME = "name";
+    private Unbinder unbinder;
 
     @BindView(R.id.layout_user_information)
     LinearLayout layout_user_information;
@@ -105,31 +100,10 @@ public class HomeFragment extends Fragment implements IBarbershopBannerLoadListe
 
     AlertDialog dialog;
 
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private DocumentReference customerRef = db.collection("User").document(Common.currentUser.getPhoneNumber());
-
     @OnClick(R.id.btn_delete_booking)
     void deleteBooking()
     {
         deleteBookingFromBarber(false);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        customerRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                if(e != null){
-                    Toast.makeText(HomeFragment.this, "Erro", )
-                }
-
-                if (documentSnapshot.exists()){
-                    String name = documentSnapshot.getString(KEY_NAME);
-                    txt_user_name.setText(name);
-                }
-            }
-        });
     }
 
     @OnClick(R.id.btn_change_booking)
@@ -236,6 +210,8 @@ public class HomeFragment extends Fragment implements IBarbershopBannerLoadListe
 
     //firestore
     CollectionReference bannerRef, sydneyRef, strathfieldRef, parramattaRef, newtownRef, cityRef, blacktownRef;
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    private String userNumber = firebaseUser.getPhoneNumber();
 
     //interface
     IBannerLoadListener iBannerLoadListener;
@@ -382,15 +358,39 @@ public class HomeFragment extends Fragment implements IBarbershopBannerLoadListe
     }
 
     private void setUserInformation() {
+        Log.d(TAG, "I WANT THE FUCKING PHONE NUMBER FIRST" + userNumber);
+        Log.d(TAG, "I WANT THE FUCKING NAME FIRST" + Common.currentUser.getName());
+        DocumentReference userInfo = FirebaseFirestore.getInstance()
+                .collection("User")
+                .document(userNumber);
+
+        userInfo.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                if(e != null){
+                    Log.d(TAG, "onEvent: " + e);
+                    return;
+                }
+                if (documentSnapshot.exists()){
+                    String name = documentSnapshot.getString(KEY_NAME);
+                    Log.d(TAG, "The name here is " + name);
+                    System.out.println("The name here is " + name);
+                    Log.d(TAG, "I WANT THE FUCKING PHONE NUMBER " + Common.currentUser.getPhoneNumber());
+                    txt_user_name.setText(name);
+                }
+            }
+        });
         layout_user_information.setVisibility(View.VISIBLE);
-        txt_user_name.setText(Common.currentUser.getName());
+        //txt_user_name.setText(Common.currentUser.getName());
     }
+
+
 
     private void loadUserBooking() {
         CollectionReference userBooking = FirebaseFirestore.getInstance()
                 .collection("User")
                 //.document(Common.currentUser.getPhoneNumber())
-                .document("+61404040404")
+                .document(userNumber)
                 .collection("Booking");
 
         //get date
