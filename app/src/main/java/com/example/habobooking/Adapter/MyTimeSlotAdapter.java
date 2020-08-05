@@ -71,6 +71,7 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
                 if(slot == position) {
                     holder.card_time_slot.setTag(Common.DISBALE_TAG);
                     holder.card_time_slot.setCardBackgroundColor(context.getResources().getColor(android.R.color.darker_gray));
+                    holder.card_time_slot.setClickable(false);
 
                     holder.txt_time_slot_description.setText("Full");
                     holder.txt_time_slot_description.setTextColor(context.getResources()
