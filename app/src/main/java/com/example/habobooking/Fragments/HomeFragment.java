@@ -53,7 +53,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 //import com.google.firebase.firestore.auth.User;
@@ -78,6 +81,7 @@ import ss.com.bannerslider.Slider;
 public class HomeFragment extends Fragment implements IBarbershopBannerLoadListener, IBookingInfoLoadListener, IBookingInformationChangedListener {
 
     private Unbinder unbinder;
+    private static final String KEY_NAME = "name";
 
     @BindView(R.id.layout_user_information)
     LinearLayout layout_user_information;
@@ -101,10 +105,31 @@ public class HomeFragment extends Fragment implements IBarbershopBannerLoadListe
 
     AlertDialog dialog;
 
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private DocumentReference customerRef = db.collection("User").document(Common.currentUser.getPhoneNumber());
+
     @OnClick(R.id.btn_delete_booking)
     void deleteBooking()
     {
         deleteBookingFromBarber(false);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        customerRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                if(e != null){
+                    Toast.makeText(HomeFragment.this, "Erro", )
+                }
+
+                if (documentSnapshot.exists()){
+                    String name = documentSnapshot.getString(KEY_NAME);
+                    txt_user_name.setText(name);
+                }
+            }
+        });
     }
 
     @OnClick(R.id.btn_change_booking)
