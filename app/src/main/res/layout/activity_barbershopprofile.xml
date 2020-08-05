@@ -126,7 +126,6 @@
                                 android:id="@+id/barbershopAddressTxt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:lineSpacingMultiplier="0.4"
                                 android:layout_weight="0.5"
                                 android:fontFamily="@font/bellerose"
                                 android:text="Address"
@@ -202,7 +201,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="16dp"
                             android:fontFamily="@font/bellerose"
-                            android:lineSpacingMultiplier="0.4"
                             android:text="Description" />
 
                         <TextView
@@ -222,7 +220,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="16dp"
                             android:fontFamily="@font/bellerose"
-                            android:lineSpacingMultiplier="0.4"
                             android:text="Open Hours" />
 
                         <TextView
@@ -242,7 +239,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="16dp"
                             android:fontFamily="@font/bellerose"
-                            android:lineSpacingMultiplier="0.4"
                             android:text="Prices" />
 
                         <TextView
