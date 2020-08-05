@@ -173,7 +173,7 @@ public class BookingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_booking);
         ButterKnife.bind(BookingActivity.this);
 
-        dialog = new SpotsDialog.Builder().setContext(this).build();
+        dialog = new SpotsDialog.Builder().setContext(this).setTheme(R.style.Custom).build();
 
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
         localBroadcastManager.registerReceiver(buttonNextReceiver,new IntentFilter(Common.KEY_ENABLE_BUTTON_NEXT));

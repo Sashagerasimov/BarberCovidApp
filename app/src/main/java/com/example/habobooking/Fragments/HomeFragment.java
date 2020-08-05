@@ -260,7 +260,7 @@ public class HomeFragment extends Fragment implements IBarbershopBannerLoadListe
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        dialog = new SpotsDialog.Builder().setContext(getContext()).setCancelable(false).build();
+        dialog = new SpotsDialog.Builder().setContext(getContext()).setCancelable(false).setTheme(R.style.Custom).build();
     }
 
     @Override

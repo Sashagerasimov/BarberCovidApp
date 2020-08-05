@@ -72,7 +72,7 @@ public class BookingStep1Fragment extends Fragment implements IAllSalonLoadListe
         iAllSalonLoadListener = this;
         iBranchLoadListener = this;
 
-        dialog = new SpotsDialog.Builder().setContext(getActivity()).build();
+        dialog = new SpotsDialog.Builder().setContext(getActivity()).setTheme(R.style.Custom).build();
     }
 
     @Nullable

@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity {
 
         //initiate
         userRef = FirebaseFirestore.getInstance().collection("User");
-        dialog = new SpotsDialog.Builder().setContext(this).setCancelable(false).build();
+        dialog = new SpotsDialog.Builder().setContext(this).setCancelable(false).setTheme(R.style.Custom).build();
         Common.currentUser = new User();
 
         if(getIntent() != null){

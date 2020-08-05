@@ -348,7 +348,7 @@ public class BookingStep4Fragment extends Fragment {
         localBroadcastManager = LocalBroadcastManager.getInstance(getContext());
         localBroadcastManager.registerReceiver(confirmBookingReceiver,new IntentFilter(Common.KEY_CONFIRM_BOOKING));
 
-        dialog = new SpotsDialog.Builder().setContext(getContext()).setCancelable(false)
+        dialog = new SpotsDialog.Builder().setContext(getContext()).setTheme(R.style.Custom).setCancelable(false)
                 .build();
     }
 

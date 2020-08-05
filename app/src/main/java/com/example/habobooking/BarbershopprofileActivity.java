@@ -113,8 +113,8 @@ public class BarbershopprofileActivity extends AppCompatActivity {
         barbershopName = "THIS IS A TEST";
         //make this barbershop name
         collapsingToolbarLayout.setTitle(barbershopName);
-        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.BLACK);
-        collapsingToolbarLayout.setExpandedTitleColor(Color.BLACK);
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
+        collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
 
         //Loading image
         //testing
