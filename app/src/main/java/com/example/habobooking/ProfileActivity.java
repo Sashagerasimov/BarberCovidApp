@@ -93,7 +93,6 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updateUser(view);
-
                //String name = profileName.getText().toString().trim();
                //String address = profileAddress.getText().toString().trim();
                //String phone = profileNumber.getText().toString().trim();
@@ -134,7 +133,22 @@ public class ProfileActivity extends AppCompatActivity {
         profile.put(KEY_PROFILENAME, name);
         profile.put(KEY_PROFILEADDRESS, address);
 
-        documentReference.update(profile);
+        documentReference.update(profile)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(ProfileActivity.this, "Profile saved", Toast.LENGTH_SHORT).show();
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(ProfileActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, e.toString());
+                    }
+                });;
+
+
     }
 
     public void saveUser(View v){
