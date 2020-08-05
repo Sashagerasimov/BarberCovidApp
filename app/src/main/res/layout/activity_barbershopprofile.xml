@@ -28,6 +28,7 @@
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/barbershop_collapse_tb"
+                android:theme="@style/CustomToolbarTheme"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:contentScrim="?attr/colorPrimaryDark"
@@ -77,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:background="#E9EC1717"
-                    app:cardCornerRadius="10dp"
+                    app:cardCornerRadius="4dp"
                     app:cardElevation="3dp"
                     app:contentPadding="20dp">
 
@@ -167,7 +168,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:background="#E9EC1717"
-                    app:cardCornerRadius="10dp"
+                    app:cardCornerRadius="4dp"
                     app:cardElevation="3dp"
                     app:contentPadding="20dp">
 

@@ -17,7 +17,9 @@
         <TextView
             android:id="@+id/txt_salon_name"
             android:text="Salon #1"
-            android:textSize="20sp"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:lineSpacingMultiplier="0.5"
             android:fontFamily="@font/bellerose"
             android:gravity="center_horizontal"
             android:layout_width="match_parent"
@@ -27,7 +29,8 @@
         <TextView
             android:id="@+id/txt_salon_address"
             android:text="Salon #1"
-            android:textSize="16sp"
+            android:padding="16dp"
+            android:textSize="12sp"
             android:textStyle="italic"
             android:fontFamily="@font/bellerose"
             android:gravity="center_horizontal"

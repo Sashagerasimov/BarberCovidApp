@@ -3,8 +3,21 @@ package com.example.habobooking.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.firestore.DocumentId;
+import com.google.firebase.firestore.PropertyName;
+
 public class Salon implements Parcelable {
-    private String name,address,website,phone,openHours,salonId;
+
+    @DocumentId
+    private String salonId;
+    @PropertyName("Name")
+    private String name;
+    @PropertyName("Address")
+    private String address;
+    @PropertyName("Phone")
+    private String phone;
+    @PropertyName("OpeningH")
+    private String openHours;
 
     public Salon() {
     }
@@ -12,7 +25,6 @@ public class Salon implements Parcelable {
     protected Salon(Parcel in) {
         name = in.readString();
         address = in.readString();
-        website = in.readString();
         phone = in.readString();
         openHours = in.readString();
         salonId = in.readString();
@@ -22,7 +34,6 @@ public class Salon implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(address);
-        dest.writeString(website);
         dest.writeString(phone);
         dest.writeString(openHours);
         dest.writeString(salonId);
@@ -59,14 +70,6 @@ public class Salon implements Parcelable {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getWebsite() {
-        return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
     }
 
     public String getPhone() {
